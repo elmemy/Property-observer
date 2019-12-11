@@ -39,3 +39,32 @@ class Box<T>
 let box = Box(20)
 box.value = 200
 
+//Binding
+
+class Binding<T>
+{
+    typealias Listener = (T) -> Void
+    var listener : Listener?
+    var value : T
+    {
+        didSet
+        {
+            listener?(value)
+        }
+    }
+    init(_ value:T) {
+        self.value = value
+    }
+    func bind(listener:Listener?){
+        self.listener = listener
+        listener?(value)
+    }
+}
+
+
+let bindInt = Binding(20)
+bindInt.bind
+    {
+        print("value changes: \($0)")
+}
+bindInt.value = 600
