@@ -16,3 +16,26 @@ class Observe
 
 let objectToObserve = Observe()
 objectToObserve.foo = 50
+
+
+
+//Observe By Generic
+
+class Box<T>
+{
+    var value : T
+    {
+        didSet
+        {
+            print("New value : \(value)")
+        }
+    }
+    init(_ value:T) {
+        self.value = value
+    }
+}
+
+
+let box = Box(20)
+box.value = 200
+
